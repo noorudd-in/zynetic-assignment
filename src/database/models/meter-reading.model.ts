@@ -6,11 +6,24 @@ import {
     Index,
 } from 'sequelize-typescript';
 
+export interface MeterReadingAttributes {
+    id?: number;
+    meterId: string;
+    kwhConsumedAc: number;
+    voltage?: number;
+    recordedAt: Date;
+}
+
+export interface MeterReadingCreationAttributes
+    extends Omit<MeterReadingAttributes, 'id'> { }
+
 @Table({
     tableName: 'meter_readings',
     timestamps: false,
 })
-export class MeterReading extends Model<MeterReading> {
+export class MeterReading extends Model<
+    MeterReadingAttributes,
+    MeterReadingCreationAttributes> {
     @Column({
         type: DataType.BIGINT,
         primaryKey: true,

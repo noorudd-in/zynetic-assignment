@@ -6,11 +6,26 @@ import {
     Index
 } from 'sequelize-typescript';
 
+export interface VehicleReadingAttributes {
+    id?: number;
+    vehicleId: string;
+    meterId: string;
+    kwhDeliveredDc: number;
+    soc?: number;
+    batteryTemp?: number;
+    recordedAt: Date;
+}
+
+export interface VehicleReadingCreationAttributes
+    extends Omit<VehicleReadingAttributes, 'id'> { }
+
 @Table({
     tableName: 'vehicle_readings',
     timestamps: false
 })
-export class VehicleReading extends Model<VehicleReading> {
+export class VehicleReading extends Model<
+    VehicleReadingAttributes,
+    VehicleReadingCreationAttributes> {
     @Column({
         type: DataType.BIGINT,
         primaryKey: true,
