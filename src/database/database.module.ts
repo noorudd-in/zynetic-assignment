@@ -10,11 +10,11 @@ import { VehicleCurrentState } from './models/vehicle-current-state.model';
     imports: [
         SequelizeModule.forRoot({
             dialect: 'postgres',
-            host: 'localhost',
-            port: 5433,
-            username: 'zynetic_admin',
-            password: 'zynetic_pass',
-            database: 'zynetic_db',
+            host: process.env.DB_HOST || 'localhost',
+            port: Number(process.env.DB_PORT) || 5433,
+            username: process.env.DB_USER || 'zynetic_admin',
+            password: process.env.DB_PASSWORD || 'zynetic_pass',
+            database: process.env.DB_NAME || 'zynetic_db',
             autoLoadModels: true,
             synchronize: false,
             logging: false,
@@ -28,9 +28,9 @@ export class DatabaseModule implements OnModuleInit {
     async onModuleInit() {
         try {
             await this.sequelize.authenticate();
-            console.log('PostgreSQL conected');
+            console.log('PostgreSQL connected');
         } catch (error) {
-            console.error('Database cnnecttion failed!', error);
+            console.error('Database connection failed!', error);
         }
     }
 }
