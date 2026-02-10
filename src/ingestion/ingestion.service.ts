@@ -7,8 +7,6 @@ import { MeterStreamDto } from './dto/meter-stream.dto';
 import { VehicleStreamDto } from './dto/vehicle-stream.dto';
 import { MeterReading } from '../database/models/meter-reading.model';
 import { VehicleReading } from '../database/models/vehicle-reading.model';
-import { MeterCurrentState } from '../database/models/meter-current-state.model';
-import { VehicleCurrentState } from '../database/models/vehicle-current-state.model';
 
 @Injectable()
 
